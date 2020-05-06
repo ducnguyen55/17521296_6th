@@ -12,7 +12,7 @@ class TShirtProduct extends Component {
 	}
 
 	async componentDidMount() {
-		await fetch(`https://apiserver6th.herokuapp.com/get-data`)
+		await fetch(`https://apiserver6th.herokuapp.com/product/get-data`)
 		.then(response => response.json())
 		.then(data => this.setState({product:data}));
 	}
