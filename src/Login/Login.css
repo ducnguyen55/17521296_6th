@@ -42,3 +42,9 @@
 .container .login .Info a{
 	margin-left: 5px;
 }
+.container .login #confirm{
+	display: block;
+	width: 100%;
+	background: rgba(220,223,171,0.3);
+	font-size: 20px;
+}

@@ -60,7 +60,9 @@
 .container .account span{
 	border: solid #fff;
 }
-
+.container .account #CustomerName{
+	color:blue;
+}
 @media (max-width: 992px)
 {
 	.navbar button{

@@ -11,6 +11,7 @@ import TShirt from '../components/TShirt/TShirt';
 import Set from '../components/Set/Set';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
+import Profile from '../User/Profile';
 
 class RouterURL extends Component {
 	render() {
@@ -26,6 +27,7 @@ class RouterURL extends Component {
 						<Route path="/Set" component={Set} />
 						<Route path="/dangnhap" component={Login} />
 						<Route path="/dangky" component={Register} />
+						<Route path="/profile" component={Profile} />
 						<Route component={Homepage} />
 					</Switch>
 				</div>

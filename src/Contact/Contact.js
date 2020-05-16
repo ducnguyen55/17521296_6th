@@ -17,7 +17,7 @@ class Contact extends Component {
         this.setState({[name]:value});
     };
     Submit = () => {
-        let submit=false;
+        let submit = false;
         var name = document.getElementById('fname').value;
         var gmail = document.getElementById('gmail').value;
         var message = document.getElementById('message').value;
@@ -46,7 +46,7 @@ class Contact extends Component {
             confirm.style.color="white";
         }
         else if(name!=''&&!format.test(gmail)&&message!=''){
-            confirm.innerHTML='Vui lòng điền đúng format của gmail (@)';      
+            confirm.innerHTML='Vui lòng điền đúng format của gmail (@)';
             confirm.style.background="red";
             confirm.style.color="white";
         }
@@ -61,6 +61,7 @@ class Contact extends Component {
     };
 
     render() {
+
         return (
             <div className="Contact">
                 <h2 className="ContactTitle">Contact</h2>

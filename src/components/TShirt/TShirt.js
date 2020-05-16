@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
 import Menu from '../../Menu/Menu';
-import TShirtProduct from './TShirtProduct';
+import ProductRender from '../../Product/ProductRender';
 import Footer from '../../Footer/Footer';
-
-class TShirt extends Component {
+class Dress extends Component {
   render(){
   return (
-    <div className="TShirt">
+    <div className="Dress">
       <header className="App-header">
         <Menu className='Menu' />
       </header>
       <div className="Product">
         <div className="NewProduct">
-          <TShirtProduct />
+          <ProductRender type={"aophong"} />
         </div>
       </div>
       <Footer />
@@ -21,4 +20,4 @@ class TShirt extends Component {
   }
 }
 
-export default TShirt;
+export default Dress;

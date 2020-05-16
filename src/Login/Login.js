@@ -1,56 +1,45 @@
 import React, {Component} from 'react';
 import './Login.css';
 import {Link,Redirect} from 'react-router-dom';
-
+import {login} from '../UserFunction/UserFunction';
+import {User} from '../Menu/Menu';
 class Login extends Component {
 	constructor(){
 		super();
 		this.state={
-			isRedirect: false,
-			users:[]
+			gmail: '',
+			password: '',
 		};
+		this.changeHandler = this.changeHandler.bind(this)
+		this.onSubmit = this.onSubmit.bind(this)
 	}
-    handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(this.state);
-    };
-
     changeHandler = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         this.setState({[name]:value});
     };
-	async componentDidMount() {
-		await fetch(`https://apiserver6th.herokuapp.com/user/get-data`)
-		.then(response => response.json())
-		.then(data => this.setState({users:data}));
-	}
-	login = () => {
-		const {users} = this.state;
-		var login = false;
-		var gmail = document.getElementById("gmail").value;
-		var password = document.getElementById("password").value;
-		for(var user of users){
-			if(user.gmail==gmail&&user.password==password)
-					login=true;
-			}
-		if(login){
-			alert('Đăng nhập thành công');
-			alert('Xin lỗi trang web hiện chưa có chức năng session login nên sẽ quay về trang chủ');
-			this.setState({
-				isRedirect: true
-			});
-		}
-		else
-			alert('Đăng nhập thất bại');
-	}
+	onSubmit(event){
+        event.preventDefault();
 
-	render(){
-		if(this.state.isRedirect){
-			return (
-				<Redirect to="/" />
-			)
+		const User = {
+			gmail:this.state.gmail,
+			password:this.state.password
 		}
+
+		login(User).then(res => { 
+			if(res) {
+					this.props.history.push('/profile')
+				}
+		})
+	}
+	CheckLogin(){
+		const token = localStorage.usertoken;
+		if(token){
+			this.props.history.push('/');
+		}
+	}
+	render(){
+		{this.CheckLogin()};
 		return (
 			<div className="Login-Form">
 				<div className="container">
@@ -60,7 +49,8 @@ class Login extends Component {
 								<div className="Title-login">
 									<i class="fa fa-sign-in" aria-hidden="true"></i>
 								</div>
-								<form onClick={this.handleSubmit}>
+								<span id="confirm"></span>
+								<form onSubmit={this.onSubmit}>
 									<div>
 										<label for="email">Email :</label>
 										<input type="gmail" id="gmail" name="gmail" onChange={this.changeHandler} placeholder="Nhập Email" />

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Menu from '../../Menu/Menu';
-import DressProduct from './DressProduct';
+import ProductRender from '../../Product/ProductRender';
 import Footer from '../../Footer/Footer';
 class Dress extends Component {
   render(){
@@ -11,7 +11,7 @@ class Dress extends Component {
       </header>
       <div className="Product">
         <div className="NewProduct">
-          <DressProduct />
+          <ProductRender type={"dress"} />
         </div>
       </div>
       <Footer />

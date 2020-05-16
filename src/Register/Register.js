@@ -1,69 +1,44 @@
 import React, {Component} from 'react';
 import './Register.css';
 import {Link} from 'react-router-dom';
+import {register} from '../UserFunction/UserFunction';
 
 class Register extends Component {
-	constructor(props){
-        super(props);
-        this.state = {name:"", gmail: "", password:"", confirm: ""};
+    constructor(){
+        super();
+        this.state={
+            name: '',
+            gmail: '',
+            password: ''
+        };
+        this.changeHandler = this.changeHandler.bind(this);
+        this.Submit = this.Submit.bind(this)
     }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(this.state);
-    };
-
     changeHandler = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         this.setState({[name]:value});
     };
-    Submit = () => {
-        let submit=false;
-        var name = document.getElementById('name').value;
-        var gmail = document.getElementById('gmail').value;
-        var password = document.getElementById('password').value;
-        var confirm = document.getElementById('confirmpw').value;
-        let format = /^[a-zA-Z0-9]*\@[a-zA-Z0-9]*\.[a-zA-Z0-9]*$/;
+    Submit = (event) => {
+        event.preventDefault();
 
-        if(name!=''&&format.test(gmail)&&password!=''&&confirm!=''&&password==confirm){
-            fetch('http://localhost:5000/user/insert',{
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify({
-                name:this.state.name,
-                gmail:this.state.gmail,
-                password:this.state.password
-            })
-        }).then((res) => res.json())
-            .then((json)=> {
-                this.setState({submitResult:true});
-                submit=true;
-            })
-            .catch((error) => {
-                this.setState({submitResult:false});
-            });
-            
-           	alert('Đăng ký thành công');
+        const User = {
+            full_name: this.state.name,
+            gmail: this.state.gmail,
+            password: this.state.password
         }
-        else if(name!=''&&!format.test(gmail)){
-            alert('Email bị lỗi');
-        }
-        else if(name!=''&&format.test(gmail)&&password!=''&&confirm!=''&&password!=confirm){
-        	alert('Password và Password không trùng nhau');
-        }
-        else{
-            alert('Vui lòng điền đầy đủ thông tin');
-        }
-        document.getElementById('name').value='';
-        document.getElementById('gmail').value='';
-        document.getElementById('password').value='';
-        document.getElementById('confirmpw').value='';
-    };
+
+        register(User).then(res => {
+            this.props.history.push('/dangnhap')
+        })
+    }
+    CheckLogin(){
+        const token = localStorage.usertoken;
+        if(token)
+            this.props.history.push('/');
+    }
 	render(){
+        {this.CheckLogin()};
 		return (
 			<div className="Register-Form">
 				<div className="container">

@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import './Menu.css';
 import {Link} from 'react-router-dom';
-
+import Account from './Account';
 class Menu extends Component {
+    constructor(props){
+        super();
+        this.state={
+        };
+    }
 	render(){
 		return (
 				<div className="Menu">
@@ -36,11 +41,7 @@ class Menu extends Component {
 						    	</ul>
 						  	</div>
 						</nav>
-						<div className="account">
-								<Link to='/dangky' className="nav-link">Đăng ký</Link>
-								<span>/</span>
-								<Link to='/dangnhap' className="nav-link">Đăng nhặp</Link>
-						</div>
+						<Account />
 					</div>
 				</div>
 		);

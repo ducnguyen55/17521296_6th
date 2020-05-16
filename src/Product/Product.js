@@ -7,7 +7,7 @@ const Product = ({id,name,image,discount,price}) => {
 		return (
 		<div className='col-sm-3'>
 			<a href="#">
-				<img alt='robots' src={`${image}`} id="image"/>
+				<img alt='imageproduct' src={`${image}`} id="image"/>
 			</a>
 			<h3 className="productName">
 				<a href="#">{name}</a>
@@ -29,7 +29,7 @@ const Product = ({id,name,image,discount,price}) => {
 		return (
 		<div className='col-sm-3'>
 			<a href="#">
-				<img alt='robots' src={`${image}`} id="image"/>
+				<img alt='imageproduct' src={`${image}`} id="image"/>
 			</a>
 			<h3 className="productName">
 				<a href="#">{name}</a>
