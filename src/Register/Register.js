@@ -27,10 +27,18 @@ class Register extends Component {
             gmail: this.state.gmail,
             password: this.state.password
         }
-
-        register(User).then(res => {
-            this.props.history.push('/dangnhap')
-        })
+        var confirmpw = document.getElementById('confirm').value;
+        var password = document.getElementById('password').value;
+        if(password==confirmpw)
+	        register(User).then(res => {
+	            this.props.history.push('/dangnhap')
+	        })
+	    else
+	    	{
+	    		var message = document.getElementById('message');
+	            message.innerHTML='Password và Confirm Password phải giống nhau';
+        		message.style.color="red";
+	    	};
     }
     CheckLogin(){
         const token = localStorage.usertoken;
@@ -48,6 +56,7 @@ class Register extends Component {
 								<div className="Title-register">
 									<i class="fa fa-user" aria-hidden="true"></i>
 								</div>
+								<span id="message"></span>
 								<form onClick={this.handleSubmit}>
 									<div>
 										<label for="name">Full name :</label>
@@ -61,7 +70,7 @@ class Register extends Component {
 										<label for="password">Password :</label>
 										<input type="password" id="password" name="password" onChange={this.changeHandler} placeholder="Password" />
 										<label for="password">Confirm Password :</label>
-										<input type="password" id="confirmpw" name="password" onChange={this.changeHandler} placeholder="Confirm Password" />
+										<input type="password" id="confirm" name="password" onChange={this.changeHandler} placeholder="Confirm Password" />
 									</div>
 									<button type="submit" className="btn btn-primary btn-block" onClick={this.Submit}>Register</button>
 								</form>
